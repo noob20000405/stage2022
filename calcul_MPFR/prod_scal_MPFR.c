@@ -6,7 +6,7 @@
 
 // input : l a1 a2 ... al b1 b2 ... bl
 
-int main(int argc, char * argv[]) {
+/*int main(int argc, char * argv[]) {
     unsigned int l = atoi(argv[1]);
     mpfr_t p, res, res_abs;
     mpfr_init2(res, 200);
@@ -39,6 +39,45 @@ int main(int argc, char * argv[]) {
     mpfr_clear(res);
     mpfr_clear(res_abs);
     mpfr_clear(p);
+    mpfr_free_cache();
+    
+    return 0;
+}*/
+
+int main(int argc, char * argv[]) {
+    unsigned int l = atoi(argv[1]);
+    double res = 0;
+    mpfr_t p, res_mpfr, tmp;
+    
+    mpfr_init2(p, 200);
+    mpfr_set_d(p, 0.0, MPFR_RNDD);
+    mpfr_init2(res_mpfr, 200);
+    mpfr_set_d(res_mpfr, 0.0, MPFR_RNDD);
+    mpfr_init2(tmp, 200);
+    mpfr_set_d(tmp, 0.0, MPFR_RNDD);
+    
+    for (int i = 0 ; i < l ; i++) {
+        res += (strtod(argv[i + 2], NULL) * strtod(argv[i + l + 2], NULL));
+        
+        mpfr_set_d(p, strtod(argv[i + 2], NULL), MPFR_RNDD);
+        mpfr_mul_d(p, p, strtod(argv[i + l + 2], NULL), MPFR_RNDU);
+        mpfr_add(res_mpfr, res_mpfr, p, MPFR_RNDD);
+    }
+    
+    printf("valeur calculee = %.80e\n", res);
+    printf("valeur exacte   = ");
+    mpfr_out_str(stdout, 10, 0, res_mpfr, MPFR_RNDD);
+    putchar('\n');
+    
+    mpfr_set_d(tmp, res, MPFR_RNDD);
+    mpfr_div(tmp, tmp, res_mpfr, MPFR_RNDD);
+    printf("conditionnement = ");
+    mpfr_out_str(stdout, 10, 0, tmp, MPFR_RNDD);
+    putchar('\n');
+    
+    mpfr_clear(res_mpfr);
+    mpfr_clear(p);
+    mpfr_clear(tmp);
     mpfr_free_cache();
     
     return 0;
