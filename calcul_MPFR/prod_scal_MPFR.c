@@ -6,7 +6,7 @@
 
 // input : l a1 a2 ... al b1 b2 ... bl
 
-/*int main(int argc, char * argv[]) {
+int main(int argc, char * argv[]) {
     unsigned int l = atoi(argv[1]);
     mpfr_t p, res, res_abs;
     mpfr_init2(res, 200);
@@ -42,9 +42,9 @@
     mpfr_free_cache();
     
     return 0;
-}*/
+}
 
-int main(int argc, char * argv[]) {
+/*int main(int argc, char * argv[]) {
     unsigned int l = atoi(argv[1]);
     double res = 0;
     mpfr_t p, res_mpfr, tmp;
@@ -81,4 +81,4 @@ int main(int argc, char * argv[]) {
     mpfr_free_cache();
     
     return 0;
-}
+}*/

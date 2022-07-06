@@ -3,7 +3,7 @@
 #include <gmp.h>
 #include <mpfr.h>
 
-/*int main(int argc, char * argv[]) {
+int main(int argc, char * argv[]) {
 
     mpfr_t v, res, res_abs;
     
@@ -37,9 +37,9 @@
     mpfr_clear(res_abs);
     mpfr_free_cache();
     return 0;
-}*/
+}
 
-int main(int argc, char * argv[]) {
+/*int main(int argc, char * argv[]) {
     double res = 0.0;
     mpfr_t res_mpfr, tmp;
     
@@ -69,4 +69,4 @@ int main(int argc, char * argv[]) {
     mpfr_free_cache();
     
     return 0;
-}
+}*/
