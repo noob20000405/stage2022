@@ -31,6 +31,7 @@ int main(int argc, char * argv[]) {
     putchar('\n');
     
     mpfr_abs(res, res, MPFR_RNDD);
+    mpfr_mul_ui(res_abs, res_abs, 2, MPFR_RNDU);
     mpfr_div(res_abs, res_abs, res, MPFR_RNDD);
     printf("conditionnement = ");
     mpfr_out_str(stdout, 10, 0, res_abs, MPFR_RNDD);
