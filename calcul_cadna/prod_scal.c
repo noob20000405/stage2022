@@ -5,6 +5,8 @@
 
 int main(int argc, char * argv[]) {
     cadna_init(-1);
+    
+    FILE * f = fopen("o_pro_scal.txt", "a");
     int l = strtod(argv[1], NULL);
     double_st res = 0.0;
     
@@ -13,6 +15,13 @@ int main(int argc, char * argv[]) {
     }
     
     printf("res = %s\n", strp(res));
+    // output result
+    //fprintf(f, "%s ", strp(res));
+    // output condition nb
+    int c = res.getaccuracy();
+    double cond = (pow(10, -c) * pow(2, 53));
+    fprintf(f, "%lf\n", cond);
     
+    fclose(f);
     cadna_end();
 }
