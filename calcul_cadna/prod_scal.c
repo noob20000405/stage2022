@@ -19,6 +19,7 @@ int main(int argc, char * argv[]) {
     //fprintf(f, "%s ", strp(res));
     // output condition nb
     int c = res.getaccuracy();
+    printf("C = %d\n", c);
     double cond = (pow(10, -c) * pow(2, 53));
     fprintf(f, "%lf\n", cond);
     
