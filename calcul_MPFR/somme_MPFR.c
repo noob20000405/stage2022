@@ -5,6 +5,8 @@
 
 int main(int argc, char * argv[]) {
 
+    FILE * f = fopen("o_somme_MPFR.txt", "a");
+
     mpfr_t v, res, res_abs;
     
     mpfr_init2(v, 200);
@@ -31,6 +33,10 @@ int main(int argc, char * argv[]) {
     printf("conditionnement = ");
     mpfr_out_str(stdout, 10, 0, res_abs, MPFR_RNDD);
     putchar('\n');
+    
+    double res_d = mpfr_get_d(res_abs, MPFR_RNDD);
+    fprintf(f, "%lf\n", res_d);
+    fclose(f);
     
     mpfr_clear(v);
     mpfr_clear(res);

@@ -9,10 +9,10 @@ int main() {
     //double v1[N];
     //double v2[N];
     //double a, b;
-    char v1[100];
-    char v2[100];
-    char a[50];
-    char b[50];
+    char v1[1000];
+    char v2[1000];
+    char a[500];
+    char b[500];
     char n[10];
     sprintf(n, "%d", N);
     
@@ -22,7 +22,8 @@ int main() {
     FILE * f_out = fopen("o_prod_scal_MPFR.txt", "w");
     fprintf(f_out, "");
     fclose(f_out);
-    char com[500];
+    char com[5000];
+    int i = 0;
     
     strcpy(v1, "");
     strcpy(v2, "");
@@ -45,6 +46,7 @@ int main() {
         
         cpt++;
         if (cpt == N) {
+            i++;
             cpt = 0;
             printf("v1 = %s\n", v1);
             
@@ -54,6 +56,11 @@ int main() {
             strcat(com, v1);
             strcat(com, v2);
             printf("com = %s\n", com);
+            
+            FILE * f_out = fopen("o_prod_scal_MPFR.txt", "a");
+            fprintf(f_out, "%d ", i);
+            fclose(f_out);
+            
             system(com);
             strcpy(v1, "");
             strcpy(v2, "");
@@ -61,7 +68,19 @@ int main() {
         }
     }
     
-    for (int i = 0 ; i < N ; i++) {
-        //printf("%s %s\n", v1[i], v2[i]);
+    
+    fclose(f_in);
+    f_in = fopen("../input_generator/SumData.txt", "r");
+    f_out = fopen("o_somme_MPFR.txt", "w");
+    fprintf(f_out, "");
+    fclose(f_out);
+    while (fgets(buf, 1000, f_in) != NULL) {
+        strcpy(com, "");
+        strcat(com, "./somme_MPFR ");
+        strcat(com, buf);
+        system(com);
+        printf("%s\n", com);
     }
+    
+    fclose(f_in);
 }

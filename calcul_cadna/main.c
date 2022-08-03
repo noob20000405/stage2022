@@ -72,7 +72,18 @@ int main() {
         }
     }
     
-    for (int i = 0 ; i < N ; i++) {
-        //printf("%s %s\n", v1[i], v2[i]);
+    fclose(f_in);
+    f_in = fopen("../input_generator/SumData.txt", "r");
+    f_out = fopen("o_somme.txt", "w");
+    fprintf(f_out, "");
+    fclose(f_out);
+    while (fgets(buf, 1000, f_in) != NULL) {
+        strcpy(com, "");
+        strcat(com, "./somme ");
+        strcat(com, buf);
+        system(com);
+        printf("%s\n", com);
     }
+    
+    fclose(f_in);
 }

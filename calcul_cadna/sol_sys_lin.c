@@ -1,16 +1,27 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <cadna.h>
 
 //input n M00 M01 ... Mnn b1 b2 ...bn
 
 int main(int argc, char * argv[]) {
+    cadna_init(-1);
+
+    FILE * f = fopen("o_sol_sys_lin.txt", "a");
+
     int n = atoi(argv[1]);
-    double M[n][n];
+    double_st M[n][n];
+    double_st L[n][n];
+    double_st b[n];
+    double_st Y[n];
+    double_st X[n];
+    
+    /*double M[n][n];
     double L[n][n];
     double b[n];
     double Y[n];
-    double X[n];
+    double X[n];*/
     
     // initialiser M (matrice a decomposer), L (comme une matrice idem au debut) et b (vecteur)
     for (int i = 0 ; i < n ; i++) {
@@ -31,7 +42,8 @@ int main(int argc, char * argv[]) {
     printf("M = \n");
     for (int i = 0 ; i < n ; i++) {
         for (int j = 0 ; j < n ; j++) {
-            printf("%f ", M[i][j]);
+            printf("%s ", strp(M[i][j]));
+            //printf("%ld ", M[i][j]);
         }
         printf("\n");
     }
@@ -39,11 +51,11 @@ int main(int argc, char * argv[]) {
     //print b
     printf("=\nb = \n");
     for (int i = 0 ; i < n ; i++) {
-        printf("%f\n", b[i]);
+        printf("%s\n", strp(b[i]));
     }
     
     // decomposer LU
-    double tmp = 0.0;
+    double_st tmp = 0.0;//////////////////////////////////
     for (int j = 0 ; j < n - 1 ; j++) {
         for (int i = j + 1 ; i < n ; i++) {
             if (M[j][j] != 0) {
@@ -65,7 +77,7 @@ int main(int argc, char * argv[]) {
     printf("L = \n");
     for (int i = 0 ; i < n ; i++) {
         for (int j = 0 ; j < n ; j++) {
-            printf("%f ", L[i][j]);
+            printf("%s ", strp(L[i][j]));
         }
         printf("\n");
     }
@@ -74,7 +86,7 @@ int main(int argc, char * argv[]) {
     printf("U = \n");
     for (int i = 0 ; i < n ; i++) {
         for (int j = 0 ; j < n ; j++) {
-            printf("%f ", M[i][j]);
+            //printf("%s ", strp(M[i][j]));
         }
         printf("\n");
     }
@@ -105,8 +117,20 @@ int main(int argc, char * argv[]) {
     }*/
     printf("X = \n");
     for (int i = 0 ; i < n ; i++) {
-        printf("%f\n", X[i]);
+        printf("%s\n", strp(X[i]));
+        printf("C = %d\n", X[i].getaccuracy());
+        //printf("%f\n", X[i]);
     }
     
+   /*
+    // output condition nb
+    int c = res.getaccuracy();
+    printf("C = %d\n", c);
+    double cond = (pow(10, -c) * pow(2, 53));
+    fprintf(f, "%lf\n", cond);*/
+    
+    
+    fclose(f);
+    cadna_end();
     return 0;
 }

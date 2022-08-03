@@ -1,9 +1,9 @@
 % nb of generations
-n = 10;
+n = 100;
 % vector length
 l = 6;
 % estimated condition nb
-c = 1;
+c = 1000;
 
 f = fopen("DotData.txt", 'W');
 
