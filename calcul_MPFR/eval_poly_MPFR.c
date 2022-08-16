@@ -12,18 +12,18 @@ int main(int argc, char * argv[]) {
     mpfr_init2(res, 200);
     mpfr_set_d(res, strtod(argv[argc - 1], NULL), MPFR_RNDD);
     mpfr_init2(res_abs, 200);
-    mpfr_set_d(res_abs, abs(strtod(argv[argc - 1], NULL)), MPFR_RNDD);
+    mpfr_set_d(res_abs, fabs(strtod(argv[argc - 1], NULL)), MPFR_RNDD);
     mpfr_init2(x, 200);
     mpfr_set_d(x, strtod(argv[1], NULL), MPFR_RNDD);
     mpfr_init2(x_abs, 200);
-    mpfr_set_d(x_abs, abs(strtod(argv[1], NULL)), MPFR_RNDD);
+    mpfr_set_d(x_abs, fabs(strtod(argv[1], NULL)), MPFR_RNDD);
     
     for (int j = argc - 2 ; j > 1 ; j--) {
         mpfr_mul(res, res, x, MPFR_RNDU);
         mpfr_add_d(res, res, strtod(argv[j], NULL), MPFR_RNDD);
         
         mpfr_mul(res_abs, res_abs, x_abs, MPFR_RNDU);
-        mpfr_add_d(res_abs, res_abs, abs(strtod(argv[j], NULL)), MPFR_RNDD);
+        mpfr_add_d(res_abs, res_abs, fabs(strtod(argv[j], NULL)), MPFR_RNDD);
     }
     
     printf("res = ");

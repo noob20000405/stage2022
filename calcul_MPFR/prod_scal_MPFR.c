@@ -40,9 +40,9 @@ int main(int argc, char * argv[]) {
     
     //mpfr_out_str(f, 10, 0, res_abs, MPFR_RNDD);
     double res_d = mpfr_get_d(res_abs, MPFR_RNDD);
-    //fprintf(f, "%lf\n", res_d);/////////////////////////////
-    mpfr_out_str(f, 10, 0, res_abs, MPFR_RNDD);
-    fprintf(f, "\n");
+    fprintf(f, "%lf\n", res_d);/////////////////////////////
+    //mpfr_out_str(f, 10, 0, res_abs, MPFR_RNDD);
+    //fprintf(f, "\n");
     
     fclose(f);
     

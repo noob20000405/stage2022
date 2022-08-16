@@ -1,5 +1,6 @@
 #include <cadna.h>
 #include <stdio.h>
+#include <math.h>
 
 int main(int argc, char * argv[]) {
     cadna_init(-1);
@@ -17,11 +18,12 @@ int main(int argc, char * argv[]) {
     
     printf("nb sig digits : %d\n", res.nb_significant_digit());
     int c = res.getaccuracy();
-    printf("acc : %d\n", c);
+    printf("acc_res : %d\n", c);
+    printf("acc_v : %d\n", v.getaccuracy());
     double cond = (pow(10, -c) * pow(2, 53));
     printf("cond = %lf\n", cond); 
     
-    fprintf(f, "%lf\n", cond);
+    fprintf(f, "%lf\n", log10(cond));
     
     fclose(f);
     

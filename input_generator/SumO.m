@@ -1,9 +1,9 @@
 % nb of generations
-n = 100;
+n = 20;
 % nb of sum
 l = 10;
 % estimated condition nb
-c = 1000;
+c = 1;
 
 f = fopen("SumData.txt", 'W');
 

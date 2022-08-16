@@ -19,7 +19,7 @@ int main() {
     int cpt = 0;
     // read data from generator
     FILE * f_in = fopen("../input_generator/DotData.txt", "r");
-    FILE * f_out = fopen("o_prod_scal_MPFR.txt", "w");
+    FILE * f_out = fopen("o_prod_scal_f_cond.txt", "w");
     fprintf(f_out, "");
     fclose(f_out);
     char com[5000];
@@ -50,14 +50,14 @@ int main() {
             cpt = 0;
             printf("v1 = %s\n", v1);
             
-            strcat(com, "./prod_scal_MPFR ");
+            strcat(com, "./prod_scal_f_cond ");
             strcat(com, n);
             strcat(com, " ");
             strcat(com, v1);
             strcat(com, v2);
             printf("com = %s\n", com);
             
-            FILE * f_out = fopen("o_prod_scal_MPFR.txt", "a");
+            FILE * f_out = fopen("o_prod_scal_f_cond.txt", "a");
             fprintf(f_out, "%d ", i);
             fclose(f_out);
             
@@ -71,12 +71,12 @@ int main() {
     
     fclose(f_in);
     f_in = fopen("../input_generator/SumData.txt", "r");
-    f_out = fopen("o_somme_MPFR.txt", "w");
+    f_out = fopen("o_somme_f_cond.txt", "w");
     fprintf(f_out, "");
     fclose(f_out);
     while (fgets(buf, 1000, f_in) != NULL) {
         strcpy(com, "");
-        strcat(com, "./somme_MPFR ");
+        strcat(com, "./somme_f_cond ");
         strcat(com, buf);
         system(com);
         printf("%s\n", com);

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <gmp.h>
 #include <mpfr.h>
+#include <math.h>
 
 int main(int argc, char * argv[]) {
 
@@ -35,7 +36,7 @@ int main(int argc, char * argv[]) {
     putchar('\n');
     
     double res_d = mpfr_get_d(res_abs, MPFR_RNDD);
-    fprintf(f, "%lf\n", res_d);
+    fprintf(f, "%lf\n", log10(res_d));
     fclose(f);
     
     mpfr_clear(v);
