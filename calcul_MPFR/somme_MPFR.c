@@ -6,7 +6,8 @@
 
 int main(int argc, char * argv[]) {
 
-    FILE * f = fopen("o_somme_MPFR.txt", "a");
+    FILE * f1 = fopen("../output_dat/o_somme_MPFR.txt", "a");
+    FILE * f2 = fopen("../output_dat_log10/o_somme_MPFR.txt", "a");
 
     mpfr_t v, res, res_abs;
     
@@ -36,8 +37,10 @@ int main(int argc, char * argv[]) {
     putchar('\n');
     
     double res_d = mpfr_get_d(res_abs, MPFR_RNDD);
-    fprintf(f, "%lf\n", log10(res_d));
-    fclose(f);
+    fprintf(f1, "%lf\n", res_d);
+    fprintf(f2, "%lf\n", log10(res_d));
+    fclose(f1);
+    fclose(f2);
     
     mpfr_clear(v);
     mpfr_clear(res);

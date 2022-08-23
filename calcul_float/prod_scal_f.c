@@ -3,7 +3,8 @@
 #include <math.h>
 
 int main(int argc, char * argv[]) {
-    FILE * f = fopen("o_prod_scal_f.txt", "a");
+    FILE * f1 = fopen("../output_dat/o_prod_scal_f.txt", "a");
+    FILE * f2 = fopen("../output_dat_log10/o_prod_scal_f.txt", "a");
     unsigned int l = atoi(argv[1]);
     
     double p, res, res_abs;
@@ -26,8 +27,10 @@ int main(int argc, char * argv[]) {
     res_abs /= res;
     
     printf("cond = %lf\n", res_abs);
-    fprintf(f, "%lf\n", res_abs);
-    fclose(f);
+     fprintf(f1, "%lf\n", res_abs);
+    fprintf(f2, "%lf\n", log10(res_abs));
+    fclose(f1);
+    fclose(f2);
     
     return 0;
 }

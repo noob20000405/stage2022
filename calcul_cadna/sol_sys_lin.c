@@ -8,7 +8,8 @@
 int main(int argc, char * argv[]) {
     cadna_init(-1);
 
-    FILE * f = fopen("o_sol_sys_lin.txt", "a");
+    FILE * f1 = fopen("../output_dat/o_sol_sys_lin.txt", "a");
+    FILE * f2 = fopen("../output_dat_log10/o_sol_sys_lin.txt", "a");
 
     int n = atoi(argv[1]);
     double_st M[n][n];
@@ -122,6 +123,18 @@ int main(int argc, char * argv[]) {
         //printf("%f\n", X[i]);
     }
     
+    int c = 20;
+    int tmp_i = 0;
+    for (int i = 0 ; i < n ; i++) {
+        tmp_i = X[i].getaccuracy();
+        if (tmp_i < c) {
+            c = tmp_i;
+        }
+    }
+    double cond = (pow(10, -c) * pow(2, 53));
+    printf("cond = %lf\n", cond);
+    fprintf(f1, "%lf\n", cond);
+    fprintf(f2, "%lf\n", log10(cond));
    /*
     // output condition nb
     int c = res.getaccuracy();
@@ -130,7 +143,8 @@ int main(int argc, char * argv[]) {
     fprintf(f, "%lf\n", cond);*/
     
     
-    fclose(f);
+    fclose(f1);
+    fclose(f2);
     cadna_end();
     return 0;
 }

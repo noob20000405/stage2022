@@ -21,7 +21,10 @@ int main() {
     int cpt = 0;
     // read data from generator
     FILE * f_in = fopen("../input_generator/DotData.txt", "r");
-    FILE * f_out = fopen("o_pro_scal.txt", "w");
+    FILE * f_out = fopen("../output_dat/o_prod_scal.txt", "w");
+    fprintf(f_out, "");
+    fclose(f_out);
+    f_out = fopen("../output_dat_log10/o_prod_scal.txt", "w");
     fprintf(f_out, "");
     fclose(f_out);
     char com[5000];
@@ -61,7 +64,14 @@ int main() {
             strcat(com, v2);
             printf("com = %s\n", com);
             
-            FILE * f_out = fopen("o_pro_scal.txt", "a");
+            /*FILE * f_out = fopen("o_pro_scal.txt", "a");
+            fprintf(f_out, "%d ", i);
+            fclose(f_out);*/
+            f_out = fopen("../output_dat/o_prod_scal.txt", "a");
+            fprintf(f_out, "%d ", i);
+            fclose(f_out);
+            
+            f_out = fopen("../output_dat_log10/o_prod_scal.txt", "a");
             fprintf(f_out, "%d ", i);
             fclose(f_out);
             
@@ -74,15 +84,89 @@ int main() {
     
     fclose(f_in);
     f_in = fopen("../input_generator/SumData.txt", "r");
-    f_out = fopen("o_somme.txt", "w");
+    f_out = fopen("../output_dat/o_somme.txt", "w");
     fprintf(f_out, "");
     fclose(f_out);
+    f_out = fopen("../output_dat_log10/o_somme.txt", "w");
+    fprintf(f_out, "");
+    fclose(f_out);
+    
+    i = 0;
     while (fgets(buf, 1000, f_in) != NULL) {
+    	i++;
         strcpy(com, "");
         strcat(com, "./somme ");
         strcat(com, buf);
+        
+        f_out = fopen("../output_dat/o_somme.txt", "a");
+        fprintf(f_out, "%d ", i);
+        fclose(f_out);
+        f_out = fopen("../output_dat_log10/o_somme.txt", "a");
+        fprintf(f_out, "%d ", i);
+        fclose(f_out);
+        
         system(com);
         printf("%s\n", com);
+    }
+    
+    f_in = fopen("../input_generator/PolyData.txt", "r");
+    f_out = fopen("../output_dat/o_eval_poly.txt", "w");
+    fprintf(f_out, "");
+    fclose(f_out);
+    f_out = fopen("../output_dat_log10/o_eval_poly.txt", "w");
+    fprintf(f_out, "");
+    fclose(f_out);
+    i = 0;
+    while (fgets(buf, 1000, f_in) != NULL) {
+    	i++;
+        strcpy(com, "");
+        strcat(com, "./eval_poly 1.001 ");
+        strcat(com, buf);
+        
+        f_out = fopen("../output_dat/o_eval_poly.txt", "a");
+        fprintf(f_out, "%d ", i);
+        fclose(f_out);
+        f_out = fopen("../output_dat_log10/o_eval_poly.txt", "a");
+        fprintf(f_out, "%d ", i);
+        fclose(f_out);
+        
+        system(com);
+        printf("%s\n", com);
+    }
+    
+    f_in = fopen("../input_generator/SolData.txt", "r");
+    f_out = fopen("../output_dat/o_sol_sys_lin.txt", "w");
+    fprintf(f_out, "");
+    fclose(f_out);
+    f_out = fopen("../output_dat_log10/o_sol_sys_lin.txt", "w");
+    fprintf(f_out, "");
+    fclose(f_out);
+    int nb = 2;
+    char str[10];
+    i = 0;
+    while (fgets(buf, 1000, f_in) != NULL) {
+        i++;
+        sprintf(str, "%d ", nb);
+    
+        strcpy(com, "");
+        strcat(com, "./sol_sys_lin ");
+        strcat(com, str);
+        strcat(com, buf);
+        com[strlen(com) - 1] = ' ';
+        for (int i = 0 ; i < nb ; i++) {
+            strcat(com, "1 ");
+        }
+        
+        f_out = fopen("../output_dat/o_sol_sys_lin.txt", "a");
+        fprintf(f_out, "%d ", i);
+        fclose(f_out);
+        f_out = fopen("../output_dat_log10/o_sol_sys_lin.txt", "a");
+        fprintf(f_out, "%d ", i);
+        fclose(f_out);
+        
+        system(com);
+        printf("%s\n", com);
+        nb++;
     }
     
     fclose(f_in);

@@ -5,6 +5,10 @@
 
 int main(int argc, char * argv[]) {
     cadna_init(-1);
+    
+    FILE * f1 = fopen("../output_dat/o_eval_poly.txt", "a");
+    FILE * f2 = fopen("../output_dat_log10/o_eval_poly.txt", "a");
+    
     double_st res = 0.0;
     double_st x = strtod(argv[1], NULL);
     
@@ -24,6 +28,12 @@ int main(int argc, char * argv[]) {
     printf("cond = %lf\n", cond); 
     
     printf("sig digits = %d\n", res.nb_significant_digit());
+    
+    fprintf(f1, "%lf\n", cond);
+    fprintf(f2, "%lf\n", log10(cond));
+    
+    fclose(f1);
+    fclose(f2);
     
     cadna_end();
 }

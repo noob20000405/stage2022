@@ -4,7 +4,8 @@
 
 int main(int argc, char * argv[]) {
 
-    FILE * f = fopen("o_eval_poly_f.txt", "a");
+    FILE * f1 = fopen("../output_dat/o_eval_poly_f.txt", "a");
+    FILE * f2 = fopen("../output_dat_log10/o_eval_poly_f.txt", "a");
     double res, res_abs, x, x_abs;
     res = strtod(argv[argc - 1], NULL);
     res_abs = fabs(strtod(argv[argc - 1], NULL));
@@ -23,8 +24,10 @@ int main(int argc, char * argv[]) {
     res = fabs(res);
     res_abs /= res;
     printf("cond = %lf\n", res_abs);
-    fprintf(f, "%lf\n", res_abs);
+     fprintf(f1, "%lf\n", res_abs);
+    fprintf(f2, "%lf\n", log10(res_abs));
     
-    fclose(f);
+    fclose(f1);
+    fclose(f2);
     return 0;
 }

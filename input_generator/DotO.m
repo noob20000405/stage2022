@@ -1,7 +1,7 @@
 % nb of generations
-n = 100;
+n = 20;
 % vector length
-l = 20;
+l = 6;
 % estimated condition nb
 c = 1000;
 

@@ -7,7 +7,8 @@
 // input : l a1 a2 ... al b1 b2 ... bl
 
 int main(int argc, char * argv[]) {
-    FILE * f = fopen("o_prod_scal_MPFR.txt", "a");
+    FILE * f1 = fopen("../output_dat/o_prod_scal_MPFR.txt", "a");
+    FILE * f2 = fopen("../output_dat_log10/o_prod_scal_MPFR.txt", "a");
     unsigned int l = atoi(argv[1]);
     mpfr_t p, res, res_abs;
     mpfr_init2(res, 200);
@@ -40,11 +41,13 @@ int main(int argc, char * argv[]) {
     
     //mpfr_out_str(f, 10, 0, res_abs, MPFR_RNDD);
     double res_d = mpfr_get_d(res_abs, MPFR_RNDD);
-    fprintf(f, "%lf\n", res_d);/////////////////////////////
+    fprintf(f1, "%lf\n", res_d);
+    fprintf(f2, "%lf\n", log10(res_d));
     //mpfr_out_str(f, 10, 0, res_abs, MPFR_RNDD);
     //fprintf(f, "\n");
     
-    fclose(f);
+    fclose(f1);
+    fclose(f2);
     
     mpfr_clear(res);
     mpfr_clear(res_abs);

@@ -5,7 +5,8 @@
 int main(int argc, char * argv[]) {
     cadna_init(-1);
 
-    FILE * f = fopen("o_somme.txt", "a");
+    FILE * f1 = fopen("../output_dat/o_somme.txt", "a");
+    FILE * f2 = fopen("../output_dat_log10/o_somme.txt", "a");
     double_st v = 0.0;
     double_st res = 0.0;
     for (int i = 1 ; i < argc ; i++) {
@@ -23,9 +24,11 @@ int main(int argc, char * argv[]) {
     double cond = (pow(10, -c) * pow(2, 53));
     printf("cond = %lf\n", cond); 
     
-    fprintf(f, "%lf\n", log10(cond));
+    fprintf(f1, "%lf\n", cond);
+    fprintf(f2, "%lf\n", log10(cond));
     
-    fclose(f);
+    fclose(f1);
+    fclose(f2);
     
     cadna_end();
 }
